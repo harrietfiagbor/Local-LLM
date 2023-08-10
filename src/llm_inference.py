@@ -17,7 +17,8 @@ print('Loading Model...')
 base_model = LlamaForCausalLM.from_pretrained(
     model_id,
     quantization_config=bnb_config,
-    device_map={'':0}
+    oofload_folder='offload',
+    device_map="auto"
 )
 
 print('Generating Pipeline...')
