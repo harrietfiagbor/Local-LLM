@@ -3,7 +3,7 @@ from transformers import LlamaTokenizer, LlamaForCausalLM, BitsAndBytesConfig, G
 from langchain.llms import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 
-model_id = "chavinlo/alpaca-native"
+model_id = "lmsys/vicuna-7b-v1.3"
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
