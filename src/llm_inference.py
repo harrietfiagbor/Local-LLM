@@ -1,15 +1,22 @@
 import torch
-from transformers import LlamaTokenizer, LlamaForCausalLM, GenerationConfig, pipeline
+from transformers import LlamaTokenizer, LlamaForCausalLM, BitsAndBytesConfig, GenerationConfig, pipeline
 from langchain.llms import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 
 model_id = "chavinlo/alpaca-native"
 
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16
+)
+
 tokenizer = LlamaTokenizer.from_pretrained(model_id)
 print('Loading Model...')
 base_model = LlamaForCausalLM.from_pretrained(
     model_id,
-    load_in_8bit=True,
+    quantization_config=bnb_config,
     device_map="auto"
 )
 
