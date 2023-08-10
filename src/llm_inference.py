@@ -29,7 +29,7 @@ with open('prompt_template.txt', 'r') as file:
 
 prompt = PrompTemplate(template=template, input_variables=['instruction'])
 
-llm-chain = LLMChain(
+llm_chain = LLMChain(
     prompt=prompt,
     llm=local_llm
 )
