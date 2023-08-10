@@ -1,3 +1,6 @@
-git+https://github.com/huggingface/transformers.git 
+git+https://github.com/huggingface/transformers.git
+accelerate
+sentencepiece
 langchain
+bitsandbytes
 torch
