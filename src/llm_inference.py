@@ -3,7 +3,7 @@ from transformers import LlamaTokenizer, LlamaForCausalLM, BitsAndBytesConfig, G
 from langchain.llms import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 
-model_id = "lmsys/vicuna-7b-v1.3"
+model_id = "TinyPixel/Llama-2-7B-bf16-sharded"
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -17,8 +17,7 @@ print('Loading Model...')
 base_model = LlamaForCausalLM.from_pretrained(
     model_id,
     quantization_config=bnb_config,
-    oofload_folder='offload',
-    device_map="auto"
+    device_map={"":0}
 )
 
 print('Generating Pipeline...')
