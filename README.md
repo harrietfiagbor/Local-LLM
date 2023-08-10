@@ -24,7 +24,7 @@ Install dependencies
   pip install -r requirements.txt
 ```
 
-Start the server
+Start the LLM inference
 
 ```bash
   python src/llm_inference.py
