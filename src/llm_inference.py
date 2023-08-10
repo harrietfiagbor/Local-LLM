@@ -1,17 +1,19 @@
 import torch
-from transformers import LlamaTokenizer, LlamaForCausalLM, GenerationConfig, BitsandBytesConfig, pipeline
+from transformers import LlamaTokenizer, LlamaForCausalLM, GenerationConfig, pipeline
 from langchain.llms import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 
 model_id = "chavinlo/alpaca-native"
 
 tokenizer = LlamaTokenizer.from_pretrained(model_id)
+print('Loading Model...')
 base_model = LlamaForCausalLM.from_pretrained(
     model_id,
     load_in_8bit=True,
     device_map="auto"
 )
 
+print('Generating Pipeline...')
 pipe = pipeline(
     "text-generation",
     model=model_id,
@@ -27,7 +29,7 @@ local_llm = HuggingFacePipeline(pipeline=pipe)
 with open('prompt_template.txt', 'r') as file:
     template = file.read()
 
-prompt = PrompTemplate(template=template, input_variables=['instruction'])
+prompt = PromptTemplate(template=template, input_variables=['instruction'])
 
 llm_chain = LLMChain(
     prompt=prompt,
