@@ -23,7 +23,7 @@ base_model = LlamaForCausalLM.from_pretrained(
 print('Generating Pipeline...')
 pipe = pipeline(
     "text-generation",
-    model=model_id,
+    model=base_model,
     tokenizer=tokenizer,
     max_length=256,
     temperature=0.7,
