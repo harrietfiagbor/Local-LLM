@@ -33,7 +33,7 @@ pipe = pipeline(
 
 local_llm = HuggingFacePipeline(pipeline=pipe)
 
-with open('prompt_template.txt', 'r') as file:
+with open('./src/prompt_template.txt', 'r') as file:
     template = file.read()
 
 prompt = PromptTemplate(template=template, input_variables=['instruction'])
